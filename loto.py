@@ -66,12 +66,13 @@ class Loto:
     def check_winner(self, card):
         # Проверка элементов в строках
         for row in range(3):
-            if all(item in self.barrel_numbers for item in [card.card[col][row] for col in        range(5)]):
+            if all(item in self.barrel_numbers for item in [card.card[col][row] for col in range(5)]):
                 return True
         # Проверка колонок
         for col in range(5):
             if all(item in self.barrel_numbers for item in card.card[col]):
                 return True
+        return False
         
     def start(self):
         for i, card in enumerate(self.players):
@@ -87,7 +88,8 @@ class Loto:
                     winner = i
                     break
 
-        print(f"Игрок {winner + 1} выиграл!")
+        return winner + 1
+        #print(f"Игрок {winner + 1} выиграл!")
 
 if __name__ == "__main__":
     try:
@@ -99,7 +101,7 @@ if __name__ == "__main__":
         print("Кол-во игроков не распознано, по умолчанию будет 2 игрока: Вы и комп")
         players_cnt = 2
     loto = Loto(players = players_cnt)
-    loto.start()
+    print(f"Игрок {loto.start()} выиграл!")
 
 
 # In[23]:
